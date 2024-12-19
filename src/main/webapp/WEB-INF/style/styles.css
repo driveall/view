@@ -1,12 +1,30 @@
-body {
-    background-color: lightblue;
+body, html {
+    height: 100%;
 }
-
 h1 {
     color: navy;
+    background-color: burlywood;
     margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
-
+h2, h3 {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+body {
+    height: 100%;
+    background: burlywood url("https://kept.com.ua/image/matP/background.png") no-repeat center;
+    background-size: cover;
+}
+input {
+    font-size: 26px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
 
 .center160 {
     margin: 0;
@@ -14,17 +32,17 @@ h1 {
     top: 50%;
     left: 50%;
     height: 160px;
-    width: 200px;
+    width: 210px;
     border: 3px solid green;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
-.center400 {
+.center300 {
     margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
-    height: 400px;
+    height: 300px;
     width: 360px;
     border: 3px solid green;
     -ms-transform: translate(-50%, -50%);
@@ -51,28 +69,32 @@ h1 {
     border: 3px solid green;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-}.center580 {
+}.center540 {
     margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
-    height: 580px;
+    height: 540px;
     width: 400px;
     border: 3px solid green;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
-.btn50 {
-    height:20px;
-    width:60px;
+.btn100 {
+    height:34px;
+    width:100px;
 }
 .btn200 {
     height:80px;
     width:200px;
 }
-.btn300 {
-    height:42px;
-    width:300px;
+.btn350 {
+    height:75px;
+    width:350px;
+}
+.btn390 {
+    height:75px;
+    width:390px;
 }
 .field200 {
     height:40px;
@@ -82,6 +104,11 @@ h1 {
 }
 .red {
     color: red;
+    background-color: burlywood;
+}
+.blue {
+    color: darkblue;
+    background-color: burlywood;
 }
 .border2px {
     border: 2px solid green;

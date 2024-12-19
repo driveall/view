@@ -19,7 +19,7 @@
                 <h2>${i.type} ${i.points}</h2>
                 <form action="/wear" method="post">
                     <input type="hidden" name="itemId" value="${i.id}" >
-                    <input type="submit" value="Wear" class="btn50" >
+                    <input type="submit" value="Wear" class="btn100" >
                 </form>
             </td>
             </c:forEach>
@@ -27,26 +27,26 @@
     </table>
 
     <h1>Your wear:</h1>
-    <h2>Money ${account.money}</h2>
+    <h2 class="blue">Money ${account.money}</h2>
     <form action="/unwear" method="post">
-        <span><h3>Head: ${account.head.name}</h3></span>
+        <span><h3 class="blue">Head: ${account.head.name}</h3></span>
         <input type="hidden" name="itemId" value="${account.head.id}" >
-        <input type="submit" value="Unwear" class="btn50" >
+        <input type="submit" value="Unwear" class="btn100" >
     </form>
     <form action="/unwear" method="post">
-        <span><h3>Body: ${account.body.name}</h3></span>
+        <span><h3 class="blue">Body: ${account.body.name}</h3></span>
         <input type="hidden" name="itemId" value="${account.body.id}" >
-        <input type="submit" value="Unwear" class="btn50" >
+        <input type="submit" value="Unwear" class="btn100" >
     </form>
     <form action="/unwear" method="post">
-        <span><h3>Legs: ${account.legs.name}</h3></span>
+        <span><h3 class="blue">Legs: ${account.legs.name}</h3></span>
         <input type="hidden" name="itemId" value="${account.legs.id}" >
-        <input type="submit" value="Unwear" class="btn50" >
+        <input type="submit" value="Unwear" class="btn100" >
     </form>
     <form action="/unwear" method="post">
-        <span><h3>Weapon: ${account.weapon.name}</h3></span>
+        <span><h3 class="blue">Weapon: ${account.weapon.name}</h3></span>
         <input type="hidden" name="itemId" value="${account.weapon.id}" >
-        <input type="submit" value="Unwear" class="btn50" >
+        <input type="submit" value="Unwear" class="btn100" >
     </form>
     <form action="/success" method="get">
         <input type="submit" value="Back" class="btn200" >

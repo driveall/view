@@ -9,6 +9,7 @@
     <style><%@include file="/WEB-INF/style/styles.css"%></style>
 </head>
 <body>
+<div>
     <div class="center160">
         <form action="/login">
             <input type="submit" value="Login" class="btn200">
@@ -18,5 +19,6 @@
             <input type="submit" value="Register" class="btn200">
         </form>
     </div>
+</div>
 </body>
 </html>

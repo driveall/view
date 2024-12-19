@@ -15,11 +15,11 @@
         <tr>
             <c:forEach items="${account.storage}" var="i">
             <td class="border2px">
-                <h2>${i.name}</h2>
-                <h2>${i.type} ${i.price}</h2>
+                <h2 class="blue">${i.name}</h2>
+                <h2 class="blue">${i.type} ${i.price}</h2>
                 <form action="/sell" method="post">
                     <input type="hidden" name="itemId" value="${i.id}" >
-                    <input type="submit" value="Sell" class="btn50" >
+                    <input type="submit" value="Sell" class="btn100" >
                 </form>
             </td>
             </c:forEach>
@@ -31,11 +31,11 @@
         <tr>
             <c:forEach items="${stuff}" var="i">
             <td class="border2px">
-                <h2>${i.name}</h2>
-                <h2>${i.type} ${i.price}</h2>
+                <h2 class="blue">${i.name}</h2>
+                <h2 class="blue">${i.type} ${i.price}</h2>
                 <form action="/buy" method="post">
                     <input type="hidden" name="itemId" value="${i.id}" >
-                    <input type="submit" value="Buy" class="btn50" >
+                    <input type="submit" value="Buy" class="btn100" >
                 </form>
             </td>
             </c:forEach>
@@ -43,7 +43,7 @@
     </table>
 
     <form action="/success" method="get">
-        <input type="submit" value="Back" class="btn200" >
+        <input type="submit" value="Back" class="btn350" >
     </form>
 </div>
 </body>
