@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.HashSet;
 
 import static com.daw.view.Constants.*;
-import static com.daw.view.Constants.ATTRIBUTE_LOGIN;
+import static com.daw.view.util.SessionUtil.*;
 
 @EnableWebMvc
 @Controller
@@ -34,22 +34,46 @@ public class ViewController {
         this.validationService = validationService;
     }
 
-    @GetMapping("/index")
-    public ModelAndView getIndex() {
-        log.info("index get");
-        return new ModelAndView("index");
+    @GetMapping({"/index", "/"})
+    public ModelAndView getIndex(HttpServletRequest req,
+                                 HttpServletResponse resp) {
+        var login = getSessionAttribute(req);
+        if (login == null) {
+            log.info("index get");
+            return new ModelAndView("index");
+        } else {
+            log.info("index get for {}, redirect", login);
+            redirect(resp, SUCCESS_PAGE_PATH);
+            return null;
+        }
     }
 
     @GetMapping("/login")
-    public ModelAndView getLogin() {
-        log.info("login get");
-        return new ModelAndView("login");
+    public ModelAndView getLogin(HttpServletRequest req,
+                                 HttpServletResponse resp) {
+        var login = getSessionAttribute(req);
+        if (login == null) {
+            log.info("login get");
+            return new ModelAndView("login");
+        } else {
+            log.info("login get for {}, redirect", login);
+            redirect(resp, SUCCESS_PAGE_PATH);
+            return null;
+        }
     }
 
     @GetMapping("/register")
-    public ModelAndView getRegister() {
-        log.info("register get");
-        return new ModelAndView("register");
+    public ModelAndView getRegister(HttpServletRequest req,
+                                    HttpServletResponse resp) {
+        var login = getSessionAttribute(req);
+        if (login == null) {
+            log.info("register get");
+            return new ModelAndView("register");
+        } else {
+            log.info("register get for {}, redirect", login);
+            redirect(resp, SUCCESS_PAGE_PATH);
+            return null;
+        }
     }
 
     @GetMapping("/success")
@@ -249,49 +273,5 @@ public class ViewController {
         log.info("unwear {} for {}", itemId, login);
         viewService.unwear(login, itemId);
         redirect(resp, WEAR_PAGE_PATH);
-    }
-
-    @PostMapping("/battle")
-    public ModelAndView battle(HttpServletRequest req) {
-        var login = getSessionAttribute(req);
-        log.info("battle start for {}", login);
-        var battle = viewService.startBattleFor(login);
-        return new ModelAndView("battle")
-                .addObject("battle", battle);
-    }
-
-    @PostMapping("/move")
-    public ModelAndView move(@RequestParam(required = false) String attack,
-                             @RequestParam(required = false) String defence,
-                             @RequestParam(required = false) String opponent,
-                             HttpServletRequest req) {
-        var login = getSessionAttribute(req);
-        log.info("battle move for {}", login);
-        var battle = viewService.move(login, opponent, attack, defence);
-        if (battle != null) {
-            return new ModelAndView("battle")
-                    .addObject("battle", battle);
-        } else return new ModelAndView("success")
-                .addObject("account", viewService.getByLogin(login));
-    }
-
-    private void addSessionAttribute(HttpServletRequest req, String login) {
-        req.getSession().setAttribute(ATTRIBUTE_LOGIN, login);
-    }
-
-    private void removeSessionAttribute(HttpServletRequest req) {
-        req.getSession().removeAttribute(ATTRIBUTE_LOGIN);
-    }
-
-    private String getSessionAttribute(HttpServletRequest req) {
-        return (String) req.getSession().getAttribute(ATTRIBUTE_LOGIN);
-    }
-
-    private void redirect(HttpServletResponse resp, String path) {
-        try {
-            resp.sendRedirect(path);
-        } catch (IOException e) {
-            log.error(e.getMessage());
-        }
     }
 }

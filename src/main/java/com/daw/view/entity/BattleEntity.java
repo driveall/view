@@ -13,6 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class BattleEntity {
     private String id;
+    private String playerId;
 
     private Set<PlayerEntity> teamOne;
     private Set<PlayerEntity> teamTwo;
@@ -23,4 +24,20 @@ public class BattleEntity {
     private boolean teamOneFinish = false;
     private boolean teamTwoFinish = false;
     private boolean battleFinished = false;
+
+    public PlayerEntity getPlayer(String playerId) {
+        var player = teamOne.stream().filter(p -> p.getId().equals(playerId)).findFirst().orElse(null);
+        if (player == null) {
+            player = teamTwo.stream().filter(p -> p.getId().equals(playerId)).findFirst().get();
+        }
+        return player;
+    }
+
+    public PlayerEntity getOpponentForSinglePlayerBattle(String playerId) {
+        var player = teamOne.stream().filter(p -> p.getId().equals(playerId)).findFirst().orElse(null);
+        if (player == null) {
+            return teamOne.stream().findFirst().get();
+        }
+        return teamTwo.stream().findFirst().get();
+    }
 }
