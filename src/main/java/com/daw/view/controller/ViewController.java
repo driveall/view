@@ -251,6 +251,30 @@ public class ViewController {
         redirect(resp, WEAR_PAGE_PATH);
     }
 
+    @PostMapping("/battle")
+    public ModelAndView battle(HttpServletRequest req) {
+        var login = getSessionAttribute(req);
+        log.info("battle start for {}", login);
+        var battle = viewService.startBattleFor(login);
+        return new ModelAndView("battle")
+                .addObject("battle", battle);
+    }
+
+    @PostMapping("/move")
+    public ModelAndView move(@RequestParam(required = false) String attack,
+                             @RequestParam(required = false) String defence,
+                             @RequestParam(required = false) String opponent,
+                             HttpServletRequest req) {
+        var login = getSessionAttribute(req);
+        log.info("battle move for {}", login);
+        var battle = viewService.move(login, opponent, attack, defence);
+        if (battle != null) {
+            return new ModelAndView("battle")
+                    .addObject("battle", battle);
+        } else return new ModelAndView("success")
+                .addObject("account", viewService.getByLogin(login));
+    }
+
     private void addSessionAttribute(HttpServletRequest req, String login) {
         req.getSession().setAttribute(ATTRIBUTE_LOGIN, login);
     }

@@ -16,16 +16,13 @@
     <form action="/update" method="get">
         <input type="submit" value="Update" class="btn350" >
     </form>
-    <form action="/delete" method="post">
-        <input type="hidden" name="login" value="${account.login}">
-        <input type="submit" value="Delete" class="btn350" onclick="change()">
-    </form>
-
     <form action="/unlogin" method="post">
         <input type="submit" value="Unlogin" class="btn350" >
     </form>
     <h2 class="blue">You have ${account.storage.size()} items</h2>
     <h2 class="blue">Money ${account.money}</h2>
+    <h2 class="blue">Level ${account.level}</h2>
+    <h2 class="blue">Points ${account.points}</h2>
     <h2 class="blue">Head: ${account.head.name}</h2>
     <h2 class="blue">Body: ${account.body.name}</h2>
     <h2 class="blue">Legs: ${account.legs.name}</h2>
@@ -36,11 +33,10 @@
     <form action="/shop" method="get">
         <input type="submit" value="To Shop" class="btn350" >
     </form>
-    <script>
-        function change(){
-            alert();
-        }
-    </script>
+    <br/>
+    <form action="/battle" method="post">
+        <input type="submit" value="To Battle" class="btn350" >
+    </form>
 </div>
 </body>
 </html>

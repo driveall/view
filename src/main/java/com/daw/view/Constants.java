@@ -13,6 +13,10 @@ public class Constants {
     public static final String API_CREATE_URL = "http://localhost:8081/api/create";
     public static final String API_UPDATE_URL = "http://localhost:8081/api/update";
     public static final String API_DELETE_URL = "http://localhost:8081/api/delete?login=%s";
+    public static final String BATTLE_CREATE_URL = "http://localhost:8082/battle/create";
+    public static final String BATTLE_UPDATE_URL = "http://localhost:8082/battle/update";
+    public static final String BATTLE_DELETE_URL = "http://localhost:8082/battle/delete?battleId=%s";
+    public static final String BATTLE_GET_URL = "http://localhost:8082/battle/get?battleId=%s";
 
     public static final String DEFAULT_REGION = "UA";
 

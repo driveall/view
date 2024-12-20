@@ -19,11 +19,19 @@
         <input type="hidden" name="login" value="${account.login}">
         <input type="submit" value="ok" class="btn200">
     </form>
-
     <form action="/success">
         <input type="submit" value="Back" class="btn200">
     </form>
-
+    <br/>
+    <form action="/delete" method="post">
+        <input type="hidden" name="login" value="${account.login}">
+        <input type="submit" value="Delete" class="btn350" onclick="change()">
+    </form>
+    <script>
+        function change(){
+            alert();
+        }
+    </script>
 </div>
 </body>
 </html>
