@@ -31,8 +31,8 @@
         <tr>
             <c:forEach items="${stuff}" var="i">
             <td class="width-150">
-                <h3 class="blue">${i.name}</h3>
-                <h3 class="blue">${i.type} ${i.price}</h3>
+                <h3>${i.name}</h3>
+                <h3>${i.type} ${i.price}</h3>
                 <form action="/buy" method="post">
                     <input type="hidden" name="itemId" value="${i.id}" >
                     <input type="submit" value="Buy" class="btn-quarter60" >

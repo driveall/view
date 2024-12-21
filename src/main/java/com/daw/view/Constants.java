@@ -17,5 +17,6 @@ public class Constants {
     public static final String BATTLE_MOVE_URL = "http://localhost:8082/battle/move?login=%s&attack=%s&defence=%s&opponent=%s";
 
     public static final String DEFAULT_REGION = "UA";
+    public static final Integer ITEMS_COUNT = 8;
 
 }

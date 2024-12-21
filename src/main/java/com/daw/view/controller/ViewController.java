@@ -2,6 +2,7 @@ package com.daw.view.controller;
 
 import com.daw.view.entity.AccountEntity;
 import com.daw.view.entity.ItemEntity;
+import com.daw.view.service.SessionListener;
 import com.daw.view.service.ValidationService;
 import com.daw.view.service.ViewService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,7 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.io.IOException;
-import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import static com.daw.view.Constants.*;
@@ -29,10 +31,14 @@ import static com.daw.view.util.SessionUtil.*;
 public class ViewController {
     private final ViewService viewService;
     private final ValidationService validationService;
+    private final SessionListener sessionListener;
 
-    public ViewController(ViewService viewService, ValidationService validationService) {
+    public ViewController(ViewService viewService,
+                          ValidationService validationService,
+                          SessionListener sessionListener) {
         this.viewService = viewService;
         this.validationService = validationService;
+        this.sessionListener = sessionListener;
     }
 
     @GetMapping({"/index", "/"})
@@ -99,12 +105,16 @@ public class ViewController {
         log.info("shop get login {}", login);
         if (login != null) {
             var account = viewService.getByLogin(login);
-            var stuff = new HashSet<ItemEntity>();
-            stuff.add(viewService.getItem("ITEM:1"));
-            stuff.add(viewService.getItem("ITEM:2"));
-            stuff.add(viewService.getItem("ITEM:3"));
-            stuff.add(viewService.getItem("ITEM:4"));
-            stuff.removeAll(account.getStorage());
+            List<ItemEntity> stuff = new LinkedList<>();
+            for (int i = 1; i <= ITEMS_COUNT; i++) {
+                stuff.add(viewService.getItem("ITEM:" + i));
+            }
+            stuff = stuff.stream()
+                    .filter(i -> i.getLevel() <= account.getLevel())
+                    .toList();
+            stuff = stuff.stream()
+                    .filter(i -> !account.getStorage().contains(i))
+                    .toList();
             return new ModelAndView("shop")
                     .addObject("account", account)
                     .addObject("stuff", stuff);
