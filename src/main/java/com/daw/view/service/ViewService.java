@@ -1,6 +1,7 @@
 package com.daw.view.service;
 
 import com.daw.view.entity.AccountEntity;
+import com.daw.view.entity.BattleEntity;
 import com.daw.view.entity.ItemEntity;
 import com.daw.view.enums.ItemType;
 import org.joda.time.DateTime;
@@ -25,10 +26,37 @@ public class ViewService {
     private static final int KEY_LENGTH = 512;
     private static final String ALGORITHM = "PBKDF2WithHmacSHA512";
 
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate;
+
+    public ViewService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     public boolean accountExists(String login) {
         return getByLogin(login) != null;
+    }
+
+    public BattleEntity startBattleWithBot(String login) {
+        return restTemplate.postForEntity(
+                String.format(BATTLE_START_WITH_BOT_URL, login), null, BattleEntity.class).getBody();
+    }
+
+    public BattleEntity startBattle(String login) {
+        // TODO add functionality
+        return null;
+    }
+
+    public BattleEntity move(String login, String opponentId, String attack, String defence) {
+        return restTemplate.postForEntity(
+                        String.format(BATTLE_MOVE_URL, login, attack, defence, opponentId),
+                        null,
+                        BattleEntity.class)
+                .getBody();
+    }
+
+    public AccountEntity getAccountByLogin(String login) {
+        var response = restTemplate.getForEntity(String.format(API_GET_URL, login), AccountEntity.class);
+        return response.getBody();
     }
 
     public void createAccount(AccountEntity accountEntity) {

@@ -274,4 +274,38 @@ public class ViewController {
         viewService.unwear(login, itemId);
         redirect(resp, WEAR_PAGE_PATH);
     }
+
+    @PostMapping("/battle/bot/start")
+    public ModelAndView battleWithBotStart(HttpServletRequest req) {
+        var login = getSessionAttribute(req);
+        log.info("battle with bot start for {}", login);
+        var battle = viewService.startBattleWithBot(login);
+        return new ModelAndView("battle")
+                .addObject("battle", battle);
+    }
+
+    @PostMapping("/battle/start")
+    public ModelAndView battleStart(HttpServletRequest req,
+                                    HttpServletResponse res) {
+        var login = getSessionAttribute(req);
+        log.info("battle start for {}", login);
+        var battle = viewService.startBattle(login);
+        // TODO add functionality
+        return null;
+    }
+
+    @PostMapping("/battle/move")
+    public ModelAndView move(@RequestParam(required = false) String attack,
+                             @RequestParam(required = false) String defence,
+                             @RequestParam(required = false) String opponent,
+                             HttpServletRequest req) {
+        var login = getSessionAttribute(req);
+        log.info("battle move for {}", login);
+        var battle = viewService.move(login, opponent, attack, defence);
+        if (battle != null) {
+            return new ModelAndView("battle")
+                    .addObject("battle", battle);
+        } else return new ModelAndView("success")
+                .addObject("account", viewService.getAccountByLogin(login));
+    }
 }
