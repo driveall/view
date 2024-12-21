@@ -9,17 +9,17 @@
     <style><%@include file="/WEB-INF/style/styles.css"%></style>
 </head>
 <body>
-<div class="center700">
-    <h1>${account.login} your items:</h1>
+<div class="center-shop">
+    <h1>Your items, ${account.login}:</h1>
     <table>
         <tr>
             <c:forEach items="${account.storage}" var="i">
-            <td class="border2px">
-                <h2 class="blue">${i.name}</h2>
-                <h2 class="blue">${i.type} ${i.price}</h2>
+            <td class="width-150">
+                <h3>${i.name}</h3>
+                <h3>${i.type} ${i.price}</h3>
                 <form action="/sell" method="post">
                     <input type="hidden" name="itemId" value="${i.id}" >
-                    <input type="submit" value="Sell" class="btn100" >
+                    <input type="submit" value="Sell" class="btn-quarter60" >
                 </form>
             </td>
             </c:forEach>
@@ -30,12 +30,12 @@
     <table>
         <tr>
             <c:forEach items="${stuff}" var="i">
-            <td class="border2px">
-                <h2 class="blue">${i.name}</h2>
-                <h2 class="blue">${i.type} ${i.price}</h2>
+            <td class="width-150">
+                <h3 class="blue">${i.name}</h3>
+                <h3 class="blue">${i.type} ${i.price}</h3>
                 <form action="/buy" method="post">
                     <input type="hidden" name="itemId" value="${i.id}" >
-                    <input type="submit" value="Buy" class="btn100" >
+                    <input type="submit" value="Buy" class="btn-quarter60" >
                 </form>
             </td>
             </c:forEach>
@@ -43,7 +43,7 @@
     </table>
 
     <form action="/success" method="get">
-        <input type="submit" value="Back" class="btn350" >
+        <input type="submit" value="Back" class="btn150" >
     </form>
 </div>
 </body>

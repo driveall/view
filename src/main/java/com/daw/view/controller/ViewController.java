@@ -18,6 +18,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Map;
 
 import static com.daw.view.Constants.*;
 import static com.daw.view.util.SessionUtil.*;
@@ -40,7 +41,8 @@ public class ViewController {
         var login = getSessionAttribute(req);
         if (login == null) {
             log.info("index get");
-            return new ModelAndView("index");
+            return new ModelAndView("index").addObject("onlineCount", ((Map)req.getSession()
+                    .getServletContext().getAttribute("sessions")).size());
         } else {
             log.info("index get for {}, redirect", login);
             redirect(resp, SUCCESS_PAGE_PATH);

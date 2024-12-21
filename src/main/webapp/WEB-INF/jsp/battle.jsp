@@ -11,27 +11,20 @@
     </style>
 </head>
 <body>
-<div class="center700">
+<div class="center-main">
     <c:set var="player" value="${battle.getPlayer(battle.playerId)}" />
     <c:set var="opponent" value="${battle.getOpponentForSinglePlayerBattle(battle.playerId)}" />
     <h1>BATTLE OPPONENT:</h1>
-    <h2 class="blue">Name: ${opponent.id}</h2>
-    <h2 class="blue">Health: ${opponent.health}</h2>
-    <h2 class="blue">Damage: ${opponent.damage}</h2>
-    <h2 class="blue">Armor: ${opponent.armor}</h2>
-
+    <h2>Name: ${opponent.id}</h2>
+    <h2>Health: ${opponent.health}, Damage: ${opponent.damage}, Armor: ${opponent.armor}</h2>
     <br/>
-
     <h1>YOU:</h1>
-    <h2 class="blue">Name: ${player.id}</h2>
-    <h2 class="blue">Health: ${player.health}</h2>
-    <h2 class="blue">Damage: ${player.damage}</h2>
-    <h2 class="blue">Armor: ${player.armor}</h2>
+    <h2>Name: ${player.id}</h2>
+    <h2>Health: ${player.health}, Damage: ${player.damage}, Armor: ${player.armor}</h2>
     <br/>
-
     <c:if test="${!player.moveFinished}">
         <form action="/battle/move" method="post">
-            <h2 class="blue">Attack:</h2>
+            <h1>Attack:</h1>
             <input type="hidden" name="opponent" value="${battle.teamTwo.stream().findFirst().get().id}" />
             <h2>
                 <label class="blue">Left</label>
@@ -41,7 +34,7 @@
                 <label class="blue">Right</label>
                 <input type="radio" name="attack" value="Right" />
             </h2>
-            <h2 class="blue">Defence:</h2>
+            <h1>Defence:</h1>
             <h2>
                 <label class="blue">Left</label>
                 <input type="radio" name="defence" value="Left" checked />
@@ -50,18 +43,18 @@
                 <label class="blue">Right</label>
                 <input type="radio" name="defence" value="Right" />
             </h2>
-            <input type="submit" value="DO MOVE ${battle.move}" class="btn350" />
+            <input type="submit" value="DO MOVE ${battle.move}" class="btn150" />
         </form>
     </c:if>
     <c:if test="${player.moveFinished}">
         <c:if test="${battle.battleFinished}">
             <form action="/success" method="get">
-                <input type="submit" value="Back" class="btn350" >
+                <input type="submit" value="Back" class="btn150" >
             </form>
         </c:if>
         <c:if test="${!battle.battleFinished}">
             <form action="/battle/move" method="post">
-                <input type="submit" value="Update" class="btn350" >
+                <input type="submit" value="Update" class="btn150" >
             </form>
         </c:if>
     </c:if>

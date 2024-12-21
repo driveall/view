@@ -2,14 +2,21 @@ body, html {
     height: 100%;
 }
 h1 {
+    font-size: 46px;
+}
+h2 {
+    font-size: 36px;
+}
+h3 {
+    font-size: 26px;
+}
+h4 {
+    font-size: 20px;
+}
+h1, h2, h3, h4 {
     color: navy;
     background-color: burlywood;
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-h2, h3 {
+    text-align: center;
     margin-left: 5px;
     margin-right: 5px;
     margin-top: 5px;
@@ -21,80 +28,90 @@ body {
     background-size: cover;
 }
 input {
-    font-size: 26px;
+    font-size: 46px;
     margin-left: 5px;
     margin-right: 5px;
 }
 
-.center160 {
+.center-index {
     margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
-    height: 160px;
-    width: 210px;
+    height: 513px;
+    width: 600px;
     border: 3px solid green;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
-.center300 {
+.center-login {
     margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
-    height: 300px;
-    width: 360px;
+    height: 472px;
+    width: 600px;
     border: 3px solid green;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
-.center700 {
+.center-main {
     margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
     height: 700px;
-    width: 360px;
-    border: 3px solid green;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-}
-.center560 {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    height: 560px;
     width: 600px;
     border: 3px solid green;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-}.center520 {
+}
+.center-shop {
     margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
-    height: 520px;
-    width: 400px;
+    height: 620px;
+    width: 600px;
     border: 3px solid green;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+.center-register {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 630px;
+    width: 600px;
+    border: 3px solid green;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.btn-quarter60 {
+    height:60px;
+    width:130px;
+}
+.btn-half60 {
+    height:60px;
+    width:290px;
+}
+.btn-half100 {
+    height:100px;
+    width:287px;
+}
 .btn100 {
-    height:34px;
-    width:100px;
+    height:100px;
+    width:590px;
 }
 .btn200 {
-    height:80px;
-    width:200px;
+    height:200px;
+    width:590px;
+    /*font-size: 26px;*/
 }
-.btn350 {
-    height:60px;
-    width:350px;
-}
-.btn390 {
-    height:75px;
-    width:390px;
+.btn150 {
+    height:150px;
+    width:590px;
 }
 .field200 {
     height:40px;
@@ -106,10 +123,10 @@ input {
     color: red;
     background-color: burlywood;
 }
-.blue {
-    color: darkblue;
-    background-color: burlywood;
+.width-300 {
+    width: 290px;
 }
-.border2px {
+.width-150 {
+    width: 142px;
     border: 2px solid green;
 }

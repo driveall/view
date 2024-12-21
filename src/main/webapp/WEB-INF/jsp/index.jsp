@@ -10,13 +10,15 @@
 </head>
 <body>
 <div>
-    <div class="center160">
+    <div class="center-index">
+        <h1>DAW</h1>
+        <h2>Online: ${onlineCount}</h2>
         <form action="/login">
-            <input type="submit" value="Login" class="btn200">
+            <input style="font-" type="submit" value="Login" class="btn200" />
         </form>
 
         <form action="/register">
-            <input type="submit" value="Register" class="btn200">
+            <input type="submit" value="Register" class="btn200" />
         </form>
     </div>
 </div>

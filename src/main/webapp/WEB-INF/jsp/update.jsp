@@ -25,7 +25,7 @@
     <br/>
     <form action="/delete" method="post">
         <input type="hidden" name="login" value="${account.login}">
-        <input type="submit" value="Delete" class="btn350" onclick="change()">
+        <input type="submit" value="Delete" class="btn150" onclick="change()">
     </form>
     <script>
         function change(){
