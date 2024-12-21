@@ -4,7 +4,7 @@
 
 * on the AWS side DynamoDB IAM user should be created
   with correct permissions
-* update properties file with correct permissions
+* update properties file in 'store' with correct permissions
 * do 'gradle bootWar' for each service
 * copy all war files to one folder
 * make sure Java 21 is installed in classpath
@@ -14,12 +14,15 @@ java -jar -Dspring.profiles.active=dev view-0.0.1-SNAPSHOT.war
 & java -jar -Dspring.profiles.active=dev store-0.0.1-SNAPSHOT.war 
 & java -jar -Dspring.profiles.active=dev battle-0.0.1-SNAPSHOT.war
 
-table in DynamoDB will be created and filled with correct data while 
-first store app start.
+The table in the DynamoDB will be created and filled with the correct 
+data while the first 'store' service start.
 
-app can be tested using url 'http://3.66.225.3:8080/'
+'battle' service needs to process any battle. Other functionality 
+will work without 'battle' service
 
-### Application itself is the online multi-player game
+The app can be tested using url 'http://3.66.225.3:8080/' (can be broken)
+
+## Application itself is the online multi-player game
 It gives the ability to fight Bots, fight 1 on 1 between two players 
 online. Also you can create the alliance or enter into present one and 
 take a part in multiplayer battles. Multiplayer battles also able 
