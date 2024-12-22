@@ -8,6 +8,10 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.concurrent.ConcurrentHashMap;
 
+import static com.daw.view.Constants.ATTRIBUTE_LOGIN;
+import static com.daw.view.Constants.ATTRIBUTE_SESSIONS;
+import static com.daw.view.service.ViewService.logins;
+
 @Configuration()
 public class SessionListener implements HttpSessionListener {
 
@@ -27,11 +31,15 @@ public class SessionListener implements HttpSessionListener {
     }
 
     public void sessionCreated(HttpSessionEvent event){
-        ((ConcurrentHashMap<String, HttpSession>)servletContext.getAttribute("sessions"))
+        ((ConcurrentHashMap<String, HttpSession>)servletContext.getAttribute(ATTRIBUTE_SESSIONS))
                 .put(event.getSession().getId(), event.getSession());
     }
     public void sessionDestroyed(HttpSessionEvent event){
-        ((ConcurrentHashMap<String, HttpSession>)servletContext.getAttribute("sessions"))
+        ((ConcurrentHashMap<String, HttpSession>)servletContext.getAttribute(ATTRIBUTE_SESSIONS))
                 .remove(event.getSession().getId());
+        var login = event.getSession().getAttribute(ATTRIBUTE_LOGIN);
+        if (login != null) {
+            logins.remove(login);
+        }
     }
 }

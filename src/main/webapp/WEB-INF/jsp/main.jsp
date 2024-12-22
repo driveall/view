@@ -26,7 +26,8 @@
             </td>
         </tr>
     </table>
-    <h2>Money: ${account.money},Level: ${account.level}, Points ${account.points}</h2>
+    <h3>Players online: ${playersOnline}</h3>
+    <h2>Money: ${account.money}, Level: ${account.level}, Points: ${account.points}</h2>
     <table>
         <tr>
             <td class="width-300">

@@ -2,6 +2,7 @@ package com.daw.view;
 
 public class Constants {
     public static final String ATTRIBUTE_LOGIN = "login";
+    public static final String ATTRIBUTE_SESSIONS = "sessions";
 
     public static final String INDEX_PAGE_PATH = "/index";
     public static final String SHOP_PAGE_PATH = "/shop";

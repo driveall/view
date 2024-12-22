@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.daw.view.Constants.*;
+import static com.daw.view.service.ViewService.logins;
 import static com.daw.view.util.SessionUtil.*;
 
 @EnableWebMvc
@@ -90,9 +91,11 @@ public class ViewController {
         var login = getSessionAttribute(req);
         log.info("success get for {}", login);
         if (login != null) {
+            logins.add(login);
             var account = viewService.getByLogin(login);
             return new ModelAndView("main")
-                    .addObject("account", account);
+                    .addObject("account", account)
+                    .addObject("playersOnline", viewService.getPlayersOnline());
         }
         resp.sendRedirect(INDEX_PAGE_PATH);
         return null;
@@ -159,6 +162,7 @@ public class ViewController {
         log.info("login for {}", login);
         var accountEntity = viewService.getByLogin(login);
         if (accountEntity != null && viewService.login(accountEntity, pass)) {
+            logins.add(login);
             addSessionAttribute(req, accountEntity.getLogin());
             redirect(resp, SUCCESS_PAGE_PATH);
         } else {
@@ -232,8 +236,10 @@ public class ViewController {
     @PostMapping("/unlogin")
     public void unlogin(HttpServletRequest req,
                         HttpServletResponse resp) {
-        log.info("unlogin for {}", getSessionAttribute(req));
+        var login = getSessionAttribute(req);
+        log.info("unlogin for {}", login);
         removeSessionAttribute(req);
+        logins.remove(login);
         redirect(resp, INDEX_PAGE_PATH);
     }
 

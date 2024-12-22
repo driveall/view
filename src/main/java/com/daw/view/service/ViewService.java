@@ -14,6 +14,7 @@ import javax.crypto.spec.PBEKeySpec;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 import static com.daw.view.Constants.*;
 
@@ -21,6 +22,8 @@ import static com.daw.view.Constants.*;
 public class ViewService {
     @Value("${password.hash.salt}")
     private String salt;
+
+    public static final Set<String> logins = new CopyOnWriteArraySet<>();
 
     private static final int ITERATIONS = 65536;
     private static final int KEY_LENGTH = 512;
@@ -173,4 +176,12 @@ public class ViewService {
         updateAccount(accountToUpdate);
     }
 
+    public String getPlayersOnline() {
+        var playersString = new StringBuilder();
+        logins.forEach(login -> {
+            playersString.append(login);
+            playersString.append("; ");
+        });
+        return playersString.toString();
+    }
 }
