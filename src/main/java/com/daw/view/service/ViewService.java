@@ -45,8 +45,13 @@ public class ViewService {
     }
 
     public BattleEntity startBattle(String login) {
-        // TODO add functionality
-        return null;
+        return restTemplate.postForEntity(
+                String.format(BATTLE_START_URL, login), null, BattleEntity.class).getBody();
+    }
+
+    public void cancelBattle(String login) {
+        restTemplate.postForEntity(
+                String.format(BATTLE_CANCEL_URL, login), null, BattleEntity.class);
     }
 
     public BattleEntity move(String login, String opponentId, String attack, String defence) {

@@ -310,7 +310,17 @@ public class ViewController {
         var login = getSessionAttribute(req);
         log.info("battle start for {}", login);
         var battle = viewService.startBattle(login);
-        // TODO add functionality
+        return new ModelAndView("battle")
+                .addObject("battle", battle);
+    }
+
+    @PostMapping("/battle/cancel")
+    public ModelAndView battleCancel(HttpServletRequest req,
+                                    HttpServletResponse resp) throws IOException {
+        var login = getSessionAttribute(req);
+        log.info("battle cancel for {}", login);
+        viewService.cancelBattle(login);
+        resp.sendRedirect(SUCCESS_PAGE_PATH);
         return null;
     }
 
@@ -318,14 +328,17 @@ public class ViewController {
     public ModelAndView move(@RequestParam(required = false) String attack,
                              @RequestParam(required = false) String defence,
                              @RequestParam(required = false) String opponent,
-                             HttpServletRequest req) {
+                             HttpServletRequest req,
+                             HttpServletResponse resp) throws IOException {
         var login = getSessionAttribute(req);
         log.info("battle move for {}", login);
         var battle = viewService.move(login, opponent, attack, defence);
         if (battle != null) {
             return new ModelAndView("battle")
                     .addObject("battle", battle);
-        } else return new ModelAndView("success")
-                .addObject("account", viewService.getAccountByLogin(login));
+        } else {
+            resp.sendRedirect(SUCCESS_PAGE_PATH);
+            return null;
+        }
     }
 }

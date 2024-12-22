@@ -45,7 +45,10 @@
     </form>
     <br/>
     <form action="/battle/bot/start" method="post">
-        <input type="submit" value="Battle with Bot" class="btn200" >
+        <input type="submit" value="Battle with Bot" class="btn150" >
+    </form>
+    <form action="/battle/start" method="post">
+        <input type="submit" value="Battle 1x1" class="btn150" >
     </form>
 </div>
 </body>

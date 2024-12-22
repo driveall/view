@@ -12,6 +12,16 @@
 </head>
 <body>
 <div class="center-main">
+<c:if test="${!battle.started}">
+    <h1>OPPONENT SEARCHING...</h1>
+    <form action="/battle/move" method="post">
+        <input type="submit" value="Update" class="btn200" >
+    </form>
+    <form action="/battle/cancel" method="post">
+        <input type="submit" value="Cancel and Return" class="btn200" >
+    </form>
+</c:if>
+<c:if test="${battle.started}">
     <c:set var="player" value="${battle.getPlayer(battle.playerId)}" />
     <c:set var="opponent" value="${battle.getOpponentForSinglePlayerBattle(battle.playerId)}" />
     <h1>BATTLE OPPONENT:</h1>
@@ -25,7 +35,7 @@
     <c:if test="${!player.moveFinished}">
         <form action="/battle/move" method="post">
             <h1>Attack:</h1>
-            <input type="hidden" name="opponent" value="${battle.teamTwo.stream().findFirst().get().id}" />
+            <input type="hidden" name="opponent" value="${opponent.id}" />
             <h2>
                 <label class="blue">Left</label>
                 <input type="radio" name="attack" value="Left" checked />
@@ -58,6 +68,7 @@
             </form>
         </c:if>
     </c:if>
+</c:if>
 </div>
 </body>
 </html>

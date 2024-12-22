@@ -15,6 +15,8 @@ public class Constants {
     public static final String API_UPDATE_URL = "http://localhost:8081/api/update";
     public static final String API_DELETE_URL = "http://localhost:8081/api/delete?login=%s";
     public static final String BATTLE_START_WITH_BOT_URL = "http://localhost:8082/battle/bot/start?login=%s";
+    public static final String BATTLE_START_URL = "http://localhost:8082/battle/start?login=%s";
+    public static final String BATTLE_CANCEL_URL = "http://localhost:8082/battle/cancel?login=%s";
     public static final String BATTLE_MOVE_URL = "http://localhost:8082/battle/move?login=%s&attack=%s&defence=%s&opponent=%s";
 
     public static final String DEFAULT_REGION = "UA";
