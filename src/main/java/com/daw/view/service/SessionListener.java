@@ -35,11 +35,11 @@ public class SessionListener implements HttpSessionListener {
                 .put(event.getSession().getId(), event.getSession());
     }
     public void sessionDestroyed(HttpSessionEvent event){
-        ((ConcurrentHashMap<String, HttpSession>)servletContext.getAttribute(ATTRIBUTE_SESSIONS))
-                .remove(event.getSession().getId());
         var login = event.getSession().getAttribute(ATTRIBUTE_LOGIN);
         if (login != null) {
             logins.remove(login);
         }
+        ((ConcurrentHashMap<String, HttpSession>)servletContext.getAttribute(ATTRIBUTE_SESSIONS))
+                .remove(event.getSession().getId());
     }
 }

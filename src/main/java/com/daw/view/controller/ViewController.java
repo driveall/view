@@ -95,7 +95,9 @@ public class ViewController {
             var account = viewService.getByLogin(login);
             return new ModelAndView("main")
                     .addObject("account", account)
-                    .addObject("playersOnline", viewService.getPlayersOnline());
+                    .addObject("playersOnline", viewService.getPlayersOnline())
+                    .addObject("onlineCount", ((Map)req.getSession()
+                            .getServletContext().getAttribute("sessions")).size());
         }
         resp.sendRedirect(INDEX_PAGE_PATH);
         return null;
