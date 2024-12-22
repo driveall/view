@@ -1,8 +1,6 @@
 package com.daw.view.service;
 
-import com.daw.view.entity.AccountEntity;
-import com.daw.view.entity.BattleEntity;
-import com.daw.view.entity.ItemEntity;
+import com.daw.view.entity.*;
 import com.daw.view.enums.ItemType;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
@@ -123,6 +121,16 @@ public class ViewService {
     public ItemEntity getItem(String itemId) {
         var response = restTemplate.getForEntity(String.format(API_GET_ITEM_URL, itemId), ItemEntity.class);
         return response.getBody();
+    }
+
+    public List<ItemEntity> getAllItems() {
+        var response = restTemplate.getForEntity(API_GET_ALL_ITEMS_URL, Items.class);
+        return response.getBody().getItems();
+    }
+
+    public List<AccountEntity> getAllAccounts() {
+        var response = restTemplate.getForEntity(API_GET_ALL_URL, Accounts.class);
+        return response.getBody().getAccounts();
     }
 
     public void buy(String login, String itemId) {

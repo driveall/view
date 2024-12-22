@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -103,6 +102,20 @@ public class ViewController {
         return null;
     }
 
+    @GetMapping({"/accounts"})
+    public ModelAndView getAccounts(HttpServletRequest req,
+                                    HttpServletResponse resp) {
+        var login = getSessionAttribute(req);
+        if (login != null) {
+            log.info("accounts get for {}", login);
+            return new ModelAndView("accounts").addObject("accounts", viewService.getAllAccounts());
+        } else {
+            log.info("accounts get, redirect");
+            redirect(resp, INDEX_PAGE_PATH);
+            return null;
+        }
+    }
+
     @GetMapping("/shop")
     public ModelAndView getShop(HttpServletRequest req,
                                 HttpServletResponse resp) throws IOException {
@@ -110,10 +123,7 @@ public class ViewController {
         log.info("shop get login {}", login);
         if (login != null) {
             var account = viewService.getByLogin(login);
-            List<ItemEntity> stuff = new LinkedList<>();
-            for (int i = 1; i <= ITEMS_COUNT; i++) {
-                stuff.add(viewService.getItem("ITEM:" + i));
-            }
+            List<ItemEntity> stuff = viewService.getAllItems();
             stuff = stuff.stream()
                     .filter(i -> i.getLevel() <= account.getLevel())
                     .toList();

@@ -26,7 +26,20 @@
             </td>
         </tr>
     </table>
-    <h3 title="${playersOnline}"> Players online: ${onlineCount}</h3>
+    <table>
+        <tr>
+            <td class="width-300">
+                <h3 title="${playersOnline}"> Players online: ${onlineCount}</h3>
+            </td>
+            <td class="width-300">
+                <form action="/accounts" method="get">
+                    <input type="submit" value="Accounts" class="btn-half60" >
+                </form>
+            </td>
+        </tr>
+    </table>
+
+
     <h2>Money: ${account.money}, Level: ${account.level}, Points: ${account.points}</h2>
     <table>
         <tr>
