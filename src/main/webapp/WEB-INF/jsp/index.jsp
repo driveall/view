@@ -2,9 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
-<html >
+<html>
 <head>
     <title>DAW</title>
+    <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/RhMgY41S/daw.png" />
     <meta charset="UTF-8">
     <style><%@include file="/WEB-INF/style/styles.css"%></style>
 </head>

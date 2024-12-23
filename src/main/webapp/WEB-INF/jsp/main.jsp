@@ -5,6 +5,7 @@
 <html>
 <head>
     <title>DAW main page</title>
+    <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/RhMgY41S/daw.png" />
     <meta charset="UTF-8">
     <style><%@include file="/WEB-INF/style/styles.css"%></style>
 </head>
