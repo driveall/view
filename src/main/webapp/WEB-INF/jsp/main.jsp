@@ -10,18 +10,18 @@
 </head>
 <body>
 <div class="center-main">
-    <h1>Your login is ${account.login}</h1>
-    <h4>Your email: ${account.email}; phone: ${account.phone}</h4>
+    <h1>${msg.get('yourLogin')} ${account.login}</h1>
+    <h4>${msg.get('yourEmail')}: ${account.email}; ${msg.get('phone')}: ${account.phone}</h4>
     <table>
         <tr>
             <td>
                 <form action="/update" method="get">
-                    <input type="submit" value="Update" class="btn-half100" >
+                    <input type="submit" value="${msg.get('update')}" class="btn-half100" >
                 </form>
             </td>
             <td>
                 <form action="/unlogin" method="post">
-                    <input type="submit" value="Unlogin" class="btn-half100" >
+                    <input type="submit" value="${msg.get('unlogin')}" class="btn-half100" >
                 </form>
             </td>
         </tr>
@@ -29,39 +29,39 @@
     <table>
         <tr>
             <td class="width-300">
-                <h3 title="${playersOnline}"> Players online: ${onlineCount}</h3>
+                <h3 title="${playersOnline}"> ${msg.get('playersOnline')}: ${onlineCount}</h3>
             </td>
             <td class="width-300">
                 <form action="/accounts" method="get">
-                    <input type="submit" value="Accounts" class="btn-half60" >
+                    <input type="submit" value="${msg.get('players')}" class="btn-half60" >
                 </form>
             </td>
         </tr>
     </table>
 
 
-    <h2>Money: ${account.money}, Level: ${account.level}, Points: ${account.points}</h2>
+    <h2>${msg.get('money')}: ${account.money}, ${msg.get('level')}: ${account.level}, ${msg.get('points')}: ${account.points}</h2>
     <table>
         <tr>
             <td class="width-300">
-                <h2>You have ${account.storage.size()} items</h2>
+                <h2>${msg.get('youHave')} ${account.storage.size()} ${msg.get('items')}</h2>
             </td>
             <td class="width-300">
                 <form action="/shop" method="get">
-                    <input type="submit" value="Shop" class="btn-half60" >
+                    <input type="submit" value="${msg.get('shop')}" class="btn-half60" >
                 </form>
             </td>
         </tr>
     </table>
     <form action="/wear" method="get">
-        <input type="submit" value="Wear" class="btn100" >
+        <input type="submit" value="${msg.get('wear')}" class="btn100" >
     </form>
     <br/>
     <form action="/battle/bot/start" method="post">
-        <input type="submit" value="Battle with Bot" class="btn150" >
+        <input type="submit" value="${msg.get('battleWithBot')}" class="btn150" >
     </form>
     <form action="/battle/start" method="post">
-        <input type="submit" value="Battle 1x1" class="btn150" >
+        <input type="submit" value="${msg.get('battle')} 1x1" class="btn150" >
     </form>
 </div>
 </body>

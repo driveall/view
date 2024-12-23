@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="center-shop">
-    <h1>Your items, ${account.login}:</h1>
+    <h1>${msg.get('yourItems')}, ${account.login}:</h1>
     <table>
         <tr>
             <c:forEach items="${account.storage}" var="i">
@@ -19,14 +19,14 @@
                 <h3>${i.type} ${i.price}</h3>
                 <form action="/sell" method="post">
                     <input type="hidden" name="itemId" value="${i.id}" >
-                    <input type="submit" value="Sell" class="btn-quarter60" >
+                    <input type="submit" value="${msg.get('sell')}" class="btn-quarter60" >
                 </form>
             </td>
             </c:forEach>
         </tr>
     </table>
 
-    <h1>Shop:</h1>
+    <h1>${msg.get('shop')}:</h1>
     <table>
         <tr>
             <c:forEach items="${stuff}" var="i">
@@ -35,7 +35,7 @@
                 <h3>${i.type} ${i.price}</h3>
                 <form action="/buy" method="post">
                     <input type="hidden" name="itemId" value="${i.id}" >
-                    <input type="submit" value="Buy" class="btn-quarter60" >
+                    <input type="submit" value="${msg.get('buy')}" class="btn-quarter60" >
                 </form>
             </td>
             </c:forEach>
@@ -43,7 +43,7 @@
     </table>
 
     <form action="/success" method="get">
-        <input type="submit" value="Back" class="btn150" >
+        <input type="submit" value="${msg.get('back')}" class="btn150" >
     </form>
 </div>
 </body>

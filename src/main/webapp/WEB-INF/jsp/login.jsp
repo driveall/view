@@ -10,14 +10,14 @@
 </head>
 <body>
 <div class="center-login">
-    <h1>Login:</h1>
+    <h1>${msg.get('login')}:</h1>
     <form method="post" action="/login">
-        <h2 class="red">Enter login: <input type="text" name="login" class="field200"></h2>
-        <h2 class="red">Password: <input type="password" name="pass" class="field200"></h2>
-        <input type="submit" value="Login" class="btn150">
+        <h2 class="red">${msg.get('enterLogin')}: <input type="text" name="login" class="field200"></h2>
+        <h2 class="red">${msg.get('password')}: <input type="password" name="pass" class="field200"></h2>
+        <input type="submit" value="${msg.get('login')}" class="btn150">
     </form>
     <form action="/index">
-        <input type="submit" value="Back" class="btn150">
+        <input type="submit" value="${msg.get('back')}" class="btn150">
     </form>
 </div>
 </body>

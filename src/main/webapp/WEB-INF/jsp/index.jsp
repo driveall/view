@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
-<html>
+<html >
 <head>
     <title>DAW</title>
     <meta charset="UTF-8">
@@ -12,14 +12,32 @@
 <div>
     <div class="center-index">
         <h1>DAW</h1>
-        <h2>Online: ${onlineCount}</h2>
+        <h2>${msg.get('online')}: ${onlineCount}</h2>
         <form action="/login">
-            <input style="font-" type="submit" value="Login" class="btn200" />
+            <input type="submit" value="${msg.get('login')}" class="btn200" />
         </form>
 
         <form action="/register">
-            <input type="submit" value="Register" class="btn200" />
+            <input type="submit" value="${msg.get('register')}" class="btn200" />
         </form>
+        <table>
+            <tr>
+                <td class="width-300">
+                    <form action="/lang" method="post">
+                        <input type="hidden" name="lng" value="ua">
+                        <input type="submit" value="Мова" class="btn-half60" />
+                    </form>
+                </td>
+                <td class="width-300">
+                    <form action="/lang" method="post">
+                        <input type="hidden" name="lng" value="us">
+                        <input type="submit" value="English" class="btn-half60" />
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+
     </div>
 </div>
 </body>

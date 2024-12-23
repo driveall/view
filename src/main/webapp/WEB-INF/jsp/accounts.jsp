@@ -10,18 +10,18 @@
 </head>
 <body>
 <div class="center-main">
-    <h1>All accounts:</h1>
+    <h1>${msg.get('allAccounts')}:</h1>
     <form action="/success" method="get">
-        <input type="submit" value="Back" class="btn150" >
+        <input type="submit" value="${msg.get('back')}" class="btn150" >
     </form>
     <table>
         <c:forEach items="${accounts}" var="i">
         <tr>
             <td class="width-300">
-                <h3>Name: ${i.login}</h3>
+                <h3>${msg.get('name')}: ${i.login}</h3>
             </td>
             <td class="width-300">
-                <h3>Level: ${i.level}</h3>
+                <h3>${msg.get('level')}: ${i.level}</h3>
             </td>
         </tr>
         </c:forEach>
