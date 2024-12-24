@@ -62,7 +62,7 @@
     </table>
 
     <form action="/success" method="get">
-        <input type="submit" value="Back" class="btn200" >
+        <input type="submit" value="${msg.get('back')}" class="btn200" >
     </form>
 </div>
 </body>

@@ -57,7 +57,7 @@
             <input type="submit" value="${msg.get('doMove')} ${battle.move}" class="btn150" />
         </form>
         <c:forEach items="${battle.moveResults.keySet()}" var="p">
-            <h2>${p} hits on ${battle.moveResults.get(p)} damage</h2>
+            <h2><span class="red">${p}</span> ${msg.get("hitsOn")} <span class="red">${battle.moveResults.get(p)}</span> ${msg.get("points")}</h2>
         </c:forEach>
     </c:if>
     <c:if test="${player.moveFinished}">
