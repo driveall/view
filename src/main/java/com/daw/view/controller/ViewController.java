@@ -3,14 +3,12 @@ package com.daw.view.controller;
 import com.daw.view.entity.AccountEntity;
 import com.daw.view.entity.ItemEntity;
 import com.daw.view.service.SessionListener;
-import com.daw.view.service.ValidationService;
 import com.daw.view.service.ViewService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.javapoet.ClassName;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
@@ -33,7 +31,6 @@ import static com.daw.view.util.SessionUtil.*;
 @Slf4j
 public class ViewController {
     private final ViewService viewService;
-    private final ValidationService validationService;
     private final SessionListener sessionListener;
     private final MessageSource messageSource;
     private final LocaleResolver localeResolver;
@@ -42,12 +39,10 @@ public class ViewController {
     private final Map<String, String> propsUS = new HashMap<>();
 
     public ViewController(ViewService viewService,
-                          ValidationService validationService,
                           SessionListener sessionListener,
                           MessageSource messageSource,
                           LocaleResolver localeResolver) throws IOException {
         this.viewService = viewService;
-        this.validationService = validationService;
         this.sessionListener = sessionListener;
         this.messageSource = messageSource;
         this.localeResolver = localeResolver;
@@ -223,10 +218,9 @@ public class ViewController {
                       HttpServletRequest req,
                       HttpServletResponse resp) {
         log.info("login for {}", login);
-        var accountEntity = viewService.getByLogin(login);
-        if (accountEntity != null && viewService.login(accountEntity, pass)) {
+        if (viewService.login(login, pass)) {
             logins.add(login);
-            addSessionAttribute(req, accountEntity.getLogin());
+            addSessionAttribute(req, login);
             redirect(resp, SUCCESS_PAGE_PATH);
         } else {
             redirect(resp, INDEX_PAGE_PATH);
@@ -247,12 +241,8 @@ public class ViewController {
                 .password(pass)
                 .passwordConfirmed(pass2)
                 .build();
-        if (email != null && !email.isEmpty() && validationService.validateEmailAddress(email)) {
-            accountEntity.setEmail(email);
-        }
-        if (phone != null && !phone.isEmpty() && validationService.validatePhoneNumber(phone)) {
-            accountEntity.setPhone(validationService.formatPhoneNumber(phone));
-        }
+        accountEntity.setEmail(email);
+        accountEntity.setPhone(phone);
         viewService.createAccount(accountEntity);
         accountEntity = viewService.getByLogin(login);
         if (accountEntity != null) {
@@ -275,16 +265,10 @@ public class ViewController {
         var accountEntity = AccountEntity.builder()
                 .login(login)
                 .build();
-        if (!pass.isEmpty() && pass.equals(pass2)) {
-            accountEntity.setPassword(pass);
-            accountEntity.setPasswordConfirmed(pass2);
-        }
-        if (!email.isEmpty() && validationService.validateEmailAddress(email)) {
-            accountEntity.setEmail(email);
-        }
-        if (!phone.isEmpty() && validationService.validatePhoneNumber(phone)) {
-            accountEntity.setPhone(validationService.formatPhoneNumber(phone));
-        }
+        accountEntity.setPassword(pass);
+        accountEntity.setPasswordConfirmed(pass2);
+        accountEntity.setEmail(email);
+        accountEntity.setPhone(phone);
 
         viewService.updateAccount(accountEntity);
         accountEntity = viewService.getByLogin(login);
