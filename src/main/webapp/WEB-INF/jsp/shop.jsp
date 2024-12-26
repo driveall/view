@@ -18,6 +18,7 @@
             <td class="card">
                 <h3>${i.type}</h3>
                 <h3>${i.name}</h3>
+                <img src="${i.image}" height="110px" width="140px" />
                 <h3>${i.price}$ --- ${i.points}</h3>
                 <form action="/sell" method="post">
                     <input type="hidden" name="itemId" value="${i.id}" >
@@ -35,6 +36,7 @@
             <td class="card">
                 <h3>${i.type}</h3>
                 <h3>${i.name}</h3>
+                <img src="${i.image}" height="110px" width="140px" />
                 <h3>${i.price}$ --- ${i.points}</h3>
                 <form action="/buy" method="post">
                     <input type="hidden" name="itemId" value="${i.id}" >
