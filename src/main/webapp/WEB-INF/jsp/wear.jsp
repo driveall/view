@@ -18,6 +18,7 @@
             <td class="card">
                 <h3>${i.type}</h3>
                 <h3>${i.name}</h3>
+                <img src="${i.image}" height="110px" width="140px" />
                 <h3>${i.price}$ --- ${i.points}</h3>
                 <form action="/wear" method="post">
                     <input type="hidden" name="itemId" value="${i.id}" >
@@ -35,6 +36,7 @@
                 <form action="/unwear" method="post">
                     <h3 class="blue">${msg.get('head')}:</h3>
                     <h3>${account.head.name}</h3>
+                    <img src="${account.head.image}" height="110px" width="140px" />
                     <h3>${account.head.price}$ --- ${account.head.points}</h3>
                     <input type="hidden" name="itemId" value="${account.head.id}" >
                     <input type="submit" value="${msg.get('throw')}" class="btn-quarter60" >
@@ -44,7 +46,7 @@
                 <form action="/unwear" method="post">
                     <h3 class="blue">${msg.get('body')}:</h3>
                     <h3>${account.body.name}</h3>
-                    <img src="${i.image}" height="110px" width="140px" />
+                    <img src="${account.body.image}" height="110px" width="140px" />
                     <h3>${account.body.price}$ --- ${account.body.points}</h3>
                     <input type="hidden" name="itemId" value="${account.body.id}" >
                     <input type="submit" value="${msg.get('throw')}" class="btn-quarter60" >
@@ -54,7 +56,7 @@
                 <form action="/unwear" method="post">
                     <h3 class="blue">${msg.get('legs')}:</h3>
                     <h3>${account.legs.name}</h3>
-                    <img src="${i.image}" height="110px" width="140px" />
+                    <img src="${account.legs.image}" height="110px" width="140px" />
                     <h3>${account.legs.price}$ --- ${account.legs.points}</h3>
                     <input type="hidden" name="itemId" value="${account.legs.id}" >
                     <input type="submit" value="${msg.get('throw')}" class="btn-quarter60" >
@@ -64,6 +66,7 @@
                 <form action="/unwear" method="post">
                     <h3 class="blue">${msg.get('weapon')}:</h3>
                     <h3>${account.weapon.name}</h3>
+                    <img src="${account.weapon.image}" height="110px" width="140px" />
                     <h3>${account.weapon.price}$ --- ${account.weapon.points}</h3>
                     <input type="hidden" name="itemId" value="${account.weapon.id}" >
                     <input type="submit" value="${msg.get('throw')}" class="btn-quarter60" >
