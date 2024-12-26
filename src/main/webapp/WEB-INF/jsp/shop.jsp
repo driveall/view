@@ -15,9 +15,10 @@
     <table>
         <tr>
             <c:forEach items="${account.storage}" var="i">
-            <td class="width-150">
+            <td class="card">
+                <h3>${i.type}</h3>
                 <h3>${i.name}</h3>
-                <h3>${i.type} ${i.price}</h3>
+                <h3>${i.price}$ --- ${i.points}</h3>
                 <form action="/sell" method="post">
                     <input type="hidden" name="itemId" value="${i.id}" >
                     <input type="submit" value="${msg.get('sell')}" class="btn-quarter60" >
@@ -26,14 +27,15 @@
             </c:forEach>
         </tr>
     </table>
-
+    <h2>${msg.get('money')}: ${account.money}</h2>
     <h1>${msg.get('shop')}:</h1>
     <table>
         <tr>
             <c:forEach items="${stuff}" var="i">
-            <td class="width-150">
+            <td class="card">
+                <h3>${i.type}</h3>
                 <h3>${i.name}</h3>
-                <h3>${i.type} ${i.price}</h3>
+                <h3>${i.price}$ --- ${i.points}</h3>
                 <form action="/buy" method="post">
                     <input type="hidden" name="itemId" value="${i.id}" >
                     <input type="submit" value="${msg.get('buy')}" class="btn-quarter60" >
